@@ -487,10 +487,9 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
 .step-card{
   display:flex;gap:14px;align-items:flex-start;
   background:var(--glass);border:1px solid var(--rim);
-  border-radius:var(--r);padding:1.2rem;cursor:pointer;
+  border-radius:var(--r);padding:1.2rem;
   transition:border-color var(--t),background var(--t),box-shadow var(--t);
 }
-.step-card:hover{border-color:var(--rim2);background:var(--glass2)}
 .step-card.active{
   border-color:rgba(240,162,32,.4);
   background:linear-gradient(135deg,rgba(240,162,32,.07),var(--glass));
@@ -515,6 +514,27 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
   flex-shrink:0;align-self:flex-start;transition:var(--t);
 }
 .step-play:hover{color:var(--amber);background:var(--amber-g)}
+/* Step action buttons below description */
+.step-actions{
+  display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;
+}
+.step-btn-read{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--amber-g);border:1px solid var(--amber-r);
+  color:var(--amber2);border-radius:var(--r-sm);
+  padding:7px 14px;font-size:.78rem;font-weight:600;
+  cursor:pointer;transition:var(--t);
+}
+.step-btn-read:hover{background:rgba(240,162,32,.2);transform:translateY(-1px)}
+.step-btn-next{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--jade-g);border:1px solid rgba(46,194,126,.3);
+  color:var(--jade);border-radius:var(--r-sm);
+  padding:7px 14px;font-size:.78rem;font-weight:600;
+  cursor:pointer;transition:var(--t);
+}
+.step-btn-next:hover{background:rgba(46,194,126,.2);transform:translateY(-1px)}
+.step-btn-next:last-child:disabled{opacity:.35;pointer-events:none}
 
 /* ═══════════════════════ VARIANTS ═══════════════════════ */
 .var-grid{
@@ -651,14 +671,20 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
 
 /* Start quiz button (inside quick-row) */
 .quiz-launch{
-  display:inline-flex;align-items:center;gap:6px;
-  background:linear-gradient(135deg,var(--amber-g),rgba(224,92,42,.1));
-  border:1px solid var(--amber-r);color:var(--amber2);
-  border-radius:40px;padding:5px 14px;
-  font-size:.78rem;font-weight:600;cursor:pointer;transition:var(--t);
-  white-space:nowrap;
+  display:inline-flex;align-items:center;gap:9px;
+  background:linear-gradient(135deg,var(--amber-g),rgba(224,92,42,.12));
+  border:1.5px solid var(--amber-r);color:var(--amber2);
+  border-radius:40px;padding:11px 22px;
+  font-size:.9rem;font-weight:700;cursor:pointer;transition:var(--t);
+  white-space:nowrap;letter-spacing:.01em;
+  box-shadow:0 2px 12px rgba(240,162,32,.15);
 }
-.quiz-launch:hover{background:var(--amber-g);box-shadow:0 4px 16px rgba(240,162,32,.2)}
+.quiz-launch:hover{
+  background:linear-gradient(135deg,rgba(240,162,32,.22),rgba(224,92,42,.18));
+  box-shadow:0 6px 24px rgba(240,162,32,.3);
+  transform:translateY(-2px);
+}
+.quiz-launch:active{transform:translateY(0)}
 
 /* ═══════════════════════ ERROR ═══════════════════════ */
 .err-notice{
@@ -850,6 +876,92 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
   animation:orbPulse 1s ease-in-out infinite;
 }
 
+/* ═══════════════════════ WISH BOX ═══════════════════════ */
+.wish-card{
+  background:linear-gradient(135deg,rgba(240,162,32,.07),rgba(224,92,42,.05));
+  border:1.5px solid var(--amber-r);
+  border-radius:var(--r-lg);overflow:hidden;
+}
+.wish-head{
+  padding:1.1rem 1.6rem;border-bottom:1px solid var(--amber-r);
+  display:flex;align-items:center;gap:10px;
+}
+.wish-icon{
+  width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--amber),var(--ember));
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+}
+.wish-title{font-family:var(--ff-head);font-size:1.08rem;font-weight:600;color:var(--amber2)}
+.wish-body{padding:1.4rem 1.6rem;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.wish-input-wrap{flex:1;min-width:220px;display:flex;flex-direction:column;gap:5px}
+.wish-input{
+  width:100%;background:rgba(0,0,0,.25);
+  border:1.5px solid var(--amber-r);
+  border-radius:var(--r-sm);padding:12px 16px;
+  font-family:var(--ff-body);font-size:.95rem;color:var(--txt);
+  outline:none;transition:var(--t);
+  resize:none;min-height:52px;
+}
+.wish-input::placeholder{color:rgba(240,162,32,.35);font-style:italic}
+.wish-input:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-g);background:rgba(0,0,0,.35)}
+.wish-examples{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.wish-ex{
+  background:rgba(240,162,32,.08);border:1px solid var(--amber-r);
+  color:var(--amber2);border-radius:40px;padding:3px 11px;
+  font-size:.73rem;cursor:pointer;transition:var(--t);
+}
+.wish-ex:hover{background:var(--amber-g);border-color:rgba(240,162,32,.5)}
+
+/* ═══════════════════════ MANDATORY QUIZ (Q2) ═══════════════════════ */
+/* Reuses .quiz-backdrop/.quiz-box base, add mandatory styling */
+.quiz-mandatory .quiz-head{
+  background:linear-gradient(135deg,rgba(224,92,42,.15),rgba(20,16,10,.95));
+  border-bottom-color:rgba(224,92,42,.3);
+}
+.quiz-mandatory .quiz-prog-fill{
+  background:linear-gradient(90deg,var(--ember),var(--amber));
+}
+.quiz-mandatory .quiz-ans:hover{
+  background:var(--amber-g);border-color:var(--amber-r);color:var(--amber2);
+}
+/* Qty row inside mandatory quiz */
+.mquiz-qty-row{
+  display:flex;align-items:center;gap:8px;
+  padding:0 1.8rem 1.4rem;flex-wrap:wrap;
+}
+.mquiz-qty-label{font-size:.75rem;color:var(--txt-3);flex-shrink:0}
+.mquiz-qty-input{
+  width:70px;background:var(--glass2);border:1px solid var(--rim2);
+  border-radius:var(--r-sm);padding:7px 10px;
+  font-family:var(--ff-mono);font-size:.85rem;color:var(--txt);
+  outline:none;transition:var(--t);text-align:center;
+}
+.mquiz-qty-input:focus{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber-g)}
+.mquiz-unit-select{
+  background:var(--glass2);border:1px solid var(--rim2);
+  border-radius:var(--r-sm);padding:7px 10px;
+  font-family:var(--ff-body);font-size:.82rem;color:var(--txt);
+  outline:none;cursor:pointer;color-scheme:dark;
+}
+.mquiz-unit-select option{background:#1e2030;color:#edeef4}
+
+/* Thinking state for wish */
+.wish-thinking{
+  display:none;align-items:center;gap:10px;
+  padding:.8rem 1.6rem;
+  font-size:.82rem;color:var(--amber2);font-style:italic;
+  border-top:1px solid var(--amber-r);
+}
+.wish-thinking.show{display:flex}
+.wish-dots span{
+  display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--amber);margin:0 1px;
+  animation:dotBounce .8s ease-in-out infinite;
+}
+.wish-dots span:nth-child(2){animation-delay:.15s}
+.wish-dots span:nth-child(3){animation-delay:.3s}
+@keyframes dotBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+
 /* ═══════════════════════ SPINNER ═══════════════════════ */
 .spinner-wrap{
   position:fixed;inset:0;z-index:200;
@@ -890,6 +1002,89 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
 .toast.ok{border-color:rgba(46,194,126,.35);color:var(--jade)}
 .toast.err{border-color:rgba(232,72,90,.35);color:var(--rose)}
 
+/* ═══════════════════════ CONFETTI CANVAS ═══════════════════════ */
+#confettiCanvas{
+  position:fixed;inset:0;z-index:9000;
+  pointer-events:none;display:none;
+}
+
+/* ═══════════════════════ CELEBRATION MODAL ═══════════════════════ */
+.celeb-backdrop{
+  position:fixed;inset:0;z-index:8500;
+  background:rgba(7,8,12,.88);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;padding:1rem;
+}
+.celeb-backdrop.show{display:flex}
+.celeb-box{
+  background:var(--base);border:1px solid var(--rim2);
+  border-radius:var(--r-xl);box-shadow:0 32px 100px rgba(0,0,0,.8);
+  max-width:440px;width:100%;overflow:hidden;text-align:center;
+  animation:celebIn .5s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes celebIn{from{transform:scale(.7) translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.celeb-glow{
+  height:6px;
+  background:linear-gradient(90deg,var(--amber),var(--ember),var(--jade),var(--amber));
+  background-size:200% 100%;
+  animation:gradScroll 2s linear infinite;
+}
+@keyframes gradScroll{0%{background-position:0% 0}100%{background-position:200% 0}}
+.celeb-body{padding:2.2rem 2rem 1.6rem}
+.celeb-emoji{font-size:4rem;display:block;margin-bottom:.6rem;animation:emojiPop .6s .2s cubic-bezier(.34,1.8,.64,1) both}
+@keyframes emojiPop{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
+.celeb-title{
+  font-family:var(--ff-head);font-size:2rem;font-weight:600;
+  color:var(--txt);margin-bottom:.4rem;
+}
+.celeb-subtitle{font-size:.95rem;color:var(--txt-2);line-height:1.6;margin-bottom:1.4rem}
+/* Points gained */
+.celeb-pts{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber-g);border:1px solid var(--amber-r);
+  color:var(--amber2);border-radius:var(--r);
+  padding:10px 20px;font-size:1.1rem;font-weight:700;
+  margin-bottom:1.2rem;
+  animation:ptsPop .5s .5s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes ptsPop{from{transform:scale(.5);opacity:0}to{transform:none;opacity:1}}
+/* Level up banner */
+.celeb-levelup{
+  background:linear-gradient(135deg,rgba(240,162,32,.18),rgba(224,92,42,.12));
+  border:1.5px solid var(--amber-r);border-radius:var(--r);
+  padding:1rem 1.2rem;margin-bottom:1.2rem;
+  animation:levelIn .6s .7s cubic-bezier(.34,1.4,.64,1) both;
+}
+@keyframes levelIn{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+.celeb-levelup-new{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+.celeb-levelup-title{font-family:var(--ff-head);font-size:1.4rem;color:var(--txt)}
+.celeb-levelup-desc{font-size:.78rem;color:var(--txt-3);margin-top:3px}
+/* Progress bar inside modal */
+.celeb-prog-wrap{margin-bottom:1.4rem}
+.celeb-prog-label{display:flex;justify-content:space-between;font-size:.74rem;color:var(--txt-3);margin-bottom:6px}
+.celeb-prog-track{height:8px;background:var(--rim);border-radius:8px;overflow:hidden}
+.celeb-prog-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--amber2));border-radius:8px;transition:width 1s .6s ease}
+.celeb-close{
+  background:linear-gradient(135deg,var(--amber),var(--ember));
+  color:#000;border:none;border-radius:var(--r);
+  padding:12px 32px;font-size:.95rem;font-weight:700;
+  cursor:pointer;transition:var(--t);
+  box-shadow:0 4px 20px rgba(240,162,32,.35);
+}
+.celeb-close:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(240,162,32,.5)}
+
+/* ═══════════════════════ SCORE WIDGET (header) ═══════════════════════ */
+.score-pill{
+  display:flex;align-items:center;gap:8px;
+  background:var(--amber-g);border:1px solid var(--amber-r);
+  border-radius:40px;padding:6px 14px;cursor:pointer;
+  transition:var(--t);
+}
+.score-pill:hover{background:rgba(240,162,32,.18)}
+.score-rank-icon{font-size:1rem}
+.score-info{display:flex;flex-direction:column;line-height:1.15}
+.score-pts{font-size:.68rem;font-weight:700;color:var(--amber);letter-spacing:.04em}
+.score-rank{font-size:.62rem;color:var(--txt-3)}
+
 /* ═══════════════════════ FOOTER ═══════════════════════ */
 .footer{
   text-align:center;padding:2.5rem 1rem;
@@ -918,7 +1113,14 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
       <div class="logo-orb">🍳</div>
       <span class="logo-name">Chef <em>IA</em></span>
     </a>
-    <div class="header-pills">
+    <div class="header-pills" style="display:flex;align-items:center;gap:8px">
+      <div class="score-pill" id="scorePill" onclick="showScoreDetails()" title="Voir mes statistiques">
+        <span class="score-rank-icon" id="scoreIcon">🥄</span>
+        <div class="score-info">
+          <span class="score-pts" id="scorePtsDisplay">0 pts</span>
+          <span class="score-rank" id="scoreRankDisplay">Débutant</span>
+        </div>
+      </div>
       <button class="btn btn-glass" id="scrollRecipeBtn" style="display:none"
         onclick="document.getElementById('recipe-section').scrollIntoView({behavior:'smooth'})">
         📋 Recette
@@ -989,6 +1191,13 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
           <div class="tags-area" id="tagsArea">
             <span class="tags-empty" id="tagsEmpty">Aucun ingrédient — ajoutez-en ci-dessus ou via photo</span>
           </div>
+          <!-- Second quiz: add suggested ingredients after recipe is generated -->
+          <div id="postRecipeQuizBtn" style="display:none;margin-top:12px">
+            <button class="quiz-launch" style="background:linear-gradient(135deg,rgba(46,194,126,.15),rgba(46,194,126,.05));border-color:rgba(46,194,126,.3);color:var(--jade)"
+              onclick="openPostRecipeQuiz()">
+              🔄 Ajouter les ingrédients manquants
+            </button>
+          </div>
         </div>
 
         <!-- Photo -->
@@ -1005,6 +1214,38 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
           <div class="img-previews" id="imgPreviews"></div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ── QUE VOULEZ-VOUS FAIRE ? ── -->
+  <div class="wish-card">
+    <div class="wish-head">
+      <div class="wish-icon">✨</div>
+      <div>
+        <div class="wish-title">Que voulez-vous cuisiner ?</div>
+      </div>
+    </div>
+    <div class="wish-body">
+      <div class="wish-input-wrap">
+        <label class="field-label" style="color:var(--amber2)">Décrivez votre envie</label>
+        <textarea class="wish-input" id="wishInput" rows="2"
+          placeholder="ex : un gratin réconfortant pour ce soir, quelque chose de rapide avec du poulet, une tarte salée pour 4…"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){submitWish();event.preventDefault()}"></textarea>
+        <div class="wish-examples">
+          <span class="wish-ex" onclick="setWish(&quot;Un plat rapide et healthy avec ce que j&apos;ai&quot;)">⚡ Rapide &amp; healthy</span>
+          <span class="wish-ex" onclick="setWish(&quot;Un plat réconfortant pour ce soir&quot;)">🍲 Plat réconfortant</span>
+          <span class="wish-ex" onclick="setWish(&quot;Un dessert gourmand pour impressionner&quot;)">🎂 Dessert gourmand</span>
+          <span class="wish-ex" onclick="setWish(&quot;Une recette végétarienne facile&quot;)">🌿 Végétarien facile</span>
+          <span class="wish-ex" onclick="setWish(&quot;Un repas complet pour toute la famille&quot;)">👨‍👩‍👧 Pour la famille</span>
+        </div>
+      </div>
+      <button class="btn btn-amber btn-lg" onclick="submitWish()" id="wishBtn" style="align-self:flex-start">
+        🔍 Trouver ma recette
+      </button>
+    </div>
+    <div class="wish-thinking" id="wishThinking">
+      <div class="wish-dots"><span></span><span></span><span></span></div>
+      <span id="wishThinkingText">L'IA analyse votre envie et prépare les questions…</span>
     </div>
   </div>
 
@@ -1222,6 +1463,54 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
 
 </div>
 
+<!-- ════════════ MANDATORY INGREDIENT QUIZ (Q2) ════════════ -->
+<div class="quiz-backdrop" id="mquizBackdrop">
+  <div class="quiz-box quiz-mandatory" id="mquizBox" style="max-width:520px">
+    <div class="quiz-head">
+      <span class="quiz-icon" id="mquizIcon">🧐</span>
+      <div class="quiz-title" id="mquizTitle">Avez-vous cet ingrédient ?</div>
+      <div class="quiz-sub" id="mquizSub">Répondez pour chaque ingrédient — l'IA s'adaptera selon ce que vous avez.</div>
+    </div>
+    <div class="quiz-prog"><div class="quiz-prog-fill" id="mquizProgFill" style="width:0%"></div></div>
+    <div class="quiz-body" id="mquizBody">
+      <span class="quiz-q-emoji" id="mquizEmoji">🧄</span>
+      <div class="quiz-q-num" id="mquizQNum">Ingrédient 1 / 5</div>
+      <div class="quiz-q-text" id="mquizQText">Avez-vous de l'ail ?</div>
+      <div style="font-size:.75rem;color:var(--txt-3);margin-top:.3rem" id="mquizHint">Suggéré par l'IA pour votre recette</div>
+    </div>
+    <!-- Qty row (shown when user says YES) -->
+    <div class="mquiz-qty-row" id="mquizQtyRow" style="display:none">
+      <span class="mquiz-qty-label">Combien en avez-vous ?</span>
+      <input type="number" class="mquiz-qty-input" id="mquizQtyInput" min="0" max="9999" placeholder="qté" value="">
+      <select class="mquiz-unit-select" id="mquizUnitSelect">
+        <option value="g">g</option><option value="kg">kg</option>
+        <option value="ml">ml</option><option value="L">L</option>
+        <option value="cl">cl</option><option value="tsp">tsp</option>
+        <option value="tbsp">tbsp</option><option value="pce">pce</option>
+        <option value="pincée">pincée</option><option value="gousse">gousse</option>
+        <option value="tranche">tranche</option><option value="brin">brin</option>
+      </select>
+      <button class="btn btn-amber" onclick="mquizConfirmYes()" style="padding:7px 16px;font-size:.82rem">Confirmer ✓</button>
+    </div>
+    <div class="quiz-answers" id="mquizAnswers">
+      <button class="quiz-ans yes" id="mquizYes" onclick="mquizAnswerYes()">
+        <span class="quiz-ans-icon">✅</span> Oui, je l'ai !
+      </button>
+      <button class="quiz-ans no" onclick="mquizAnswerNo()">
+        <span class="quiz-ans-icon">❌</span> Je n'en ai pas
+      </button>
+    </div>
+    <!-- Result / summary -->
+    <div class="quiz-result" id="mquizResult" style="display:none">
+      <div class="quiz-result-title" id="mquizResultTitle">✨ Parfait !</div>
+      <div class="quiz-result-found" id="mquizResultText"></div>
+      <div class="quiz-actions">
+        <button class="btn btn-amber" onclick="mquizFinish()">🍳 Générer la recette maintenant</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ════════════ QUIZ MODAL ════════════ -->
 <div class="quiz-backdrop" id="quizBackdrop">
   <div class="quiz-box" id="quizBox">
@@ -1251,6 +1540,45 @@ h1,h2,h3{font-family:var(--ff-head);line-height:1.1}
         <button class="btn btn-amber" onclick="closeQuiz()">✓ Confirmer et fermer</button>
         <button class="btn btn-ghost" onclick="resetQuiz()">↩ Recommencer</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ CONFETTI CANVAS ════════════ -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- ════════════ CELEBRATION MODAL ════════════ -->
+<div class="celeb-backdrop" id="celebBackdrop">
+  <div class="celeb-box">
+    <div class="celeb-glow"></div>
+    <div class="celeb-body">
+      <span class="celeb-emoji" id="celebEmoji">🏆</span>
+      <div class="celeb-title">Bravo !</div>
+      <div class="celeb-subtitle" id="celebSubtitle">Régalez-vous bien 🍽️</div>
+
+      <div class="celeb-pts" id="celebPts">
+        ⭐ +0 points
+      </div>
+
+      <div id="celebLevelUp" class="celeb-levelup" style="display:none">
+        <div class="celeb-levelup-new">🎉 Nouveau titre débloqué !</div>
+        <div class="celeb-levelup-title" id="celebNewRank">—</div>
+        <div class="celeb-levelup-desc" id="celebNewRankDesc">—</div>
+      </div>
+
+      <div class="celeb-prog-wrap">
+        <div class="celeb-prog-label">
+          <span id="celebRankName">Débutant en cuisine</span>
+          <span id="celebProgText">0 / 100 pts</span>
+        </div>
+        <div class="celeb-prog-track">
+          <div class="celeb-prog-fill" id="celebProgFill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <button class="celeb-close" onclick="closeCelebration()">
+        🍽️ Parfait, on se régale !
+      </button>
     </div>
   </div>
 </div>
@@ -1318,7 +1646,7 @@ function addIngFromInput() {
 
 function addIng(name, qty='', unit='g') {
   const n = name.charAt(0).toUpperCase() + name.slice(1);
-  if (ings.find(i=>i.name===n)) { showToast('Déjà dans la liste'); return; }
+  if (ings.find(i => normalizeStr(i.name) === normalizeStr(n))) { showToast('Déjà dans la liste'); return; }
   ings.push({name:n, qty, unit});
   renderTags(); updateGenStatus();
 }
@@ -1555,12 +1883,42 @@ Règles : "available":true si l'utilisateur a cet ingredient. "shopping":ingredi
     console.error('generateRecipe error:',err);
     hideSpinner(); btn.disabled=false;
     document.getElementById('recipe-section').style.display='block';
-    let msg=err.message||'Erreur inconnue';
-    if(/401|authentication|unauthorized/i.test(msg)) msg='Clé API invalide.';
-    else if(/429|rate/i.test(msg)) msg='Trop de requêtes. Patientez puis réessayez.';
-    else if(/fetch|network|cors/i.test(msg)) msg='Erreur réseau. Hébergez le fichier sur un serveur HTTPS ou localhost.';
-    showError('❌ '+msg);
-    showToast('Erreur de génération','err');
+    let msg = err.message || 'Erreur inconnue';
+    let detail = '';
+    let isQuota = false;
+
+    // Parse JSON error body if present
+    try {
+      const jsonErr = JSON.parse(msg);
+      if (jsonErr.type === 'exceeded_limit' || jsonErr.windows) {
+        isQuota = true;
+        const w5h = jsonErr.windows?.['5h'];
+        const resetsAt = w5h?.resets_at || jsonErr.resetsAt;
+        const resetDate = resetsAt ? new Date(resetsAt * 1000) : null;
+        const resetStr = resetDate
+          ? resetDate.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'})
+          : '?';
+        msg = '⏳ Limite de quota API atteinte';
+        detail = `Votre quota de 5 heures est épuisé. Il se recharge automatiquement à <strong>${resetStr}</strong>.<br><br>En attendant, vous pouvez essayer la <strong>recette démo</strong> ci-dessous 👇`;
+      }
+    } catch(_) {}
+
+    if (!isQuota) {
+      if (/401|authentication|unauthorized/i.test(msg)) {
+        msg = '🔑 Clé API invalide ou manquante';
+        detail = 'Vérifiez votre accès sur <a href="https://console.anthropic.com" target="_blank" style="color:var(--amber)">console.anthropic.com</a>';
+      } else if (/429|rate|exceeded/i.test(msg)) {
+        isQuota = true;
+        msg = '⏳ Trop de requêtes';
+        detail = 'Limite temporaire atteinte. Patientez quelques minutes puis réessayez.';
+      } else if (/fetch|network|cors|failed/i.test(msg)) {
+        msg = '🌐 Erreur réseau';
+        detail = 'Hébergez ce fichier sur un serveur local ou HTTPS. Ouvrir via <code>file://</code> bloque les appels API.';
+      }
+    }
+
+    showError('❌ ' + msg, detail, isQuota);
+    showToast('Erreur — voir le message ci-dessus', 'err');
   }
 }
 
@@ -1590,14 +1948,26 @@ function renderRecipe(r) {
     </div>`).join('');
 
   activeStep=-1;
+  const totalSteps=(r.steps||[]).length;
   document.getElementById('stepsList').innerHTML=(r.steps||[]).map((s,i)=>`
-    <div class="step-card" id="sc_${i}" onclick="activateStep(${i})">
+    <div class="step-card" id="sc_${i}">
       <div class="step-num" id="sn_${i}">${i+1}</div>
       <div class="step-body">
         <div class="step-title">${s.title}</div>
         <div class="step-desc">${s.description}</div>
+        <div class="step-actions">
+          <button class="step-btn-read" onclick="activateAndRead(${i})" title="Lire cette étape">
+            🔊 Lire l'étape
+          </button>
+          ${i < totalSteps-1
+            ? `<button class="step-btn-next" onclick="activateStep(${i+1})" title="Étape suivante">
+                Étape suivante →
+              </button>`
+            : `<button class="step-btn-next" style="background:linear-gradient(135deg,var(--amber),var(--ember));color:#000;border:none;font-weight:700;box-shadow:0 4px 16px rgba(240,162,32,.4);font-size:.88rem;padding:10px 20px" onclick="recipeFinished()" title="Terminer la recette">
+                🏆 Recette terminée !
+              </button>`}
+        </div>
       </div>
-      <button class="step-play" onclick="event.stopPropagation();speak('${safe(s.description)}')" title="Écouter">🔊</button>
     </div>`).join('');
   updateStepsUI();
 
@@ -1619,6 +1989,8 @@ function renderRecipe(r) {
     :'<li class="shop-item" style="color:var(--jade);font-style:italic">🎉 Vous avez tous les ingrédients !</li>';
 
   switchTab('tIng', document.querySelector('.tnbtn'));
+  // Show "add missing ingredients" button
+  document.getElementById('postRecipeQuizBtn').style.display = '';
   // Generate recipe image asynchronously
   generateRecipeImage(r);
 }
@@ -1636,6 +2008,14 @@ function activateStep(idx) {
     else if(i>idx) el.textContent=i+1;
   });
   activeStep=idx; updateStepsUI();
+  // Scroll step into view smoothly
+  const card = document.getElementById('sc_'+idx);
+  if(card) card.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// activateAndRead: highlights the step + reads it aloud
+function activateAndRead(idx) {
+  activateStep(idx);
   speak(recipe?.steps?.[idx]?.description||'');
 }
 
@@ -1788,8 +2168,9 @@ async function answerVoiceQuestion(question) {
     addChatBubble(answer,'ai'); setVoiceState('speaking'); speak(answer);
   } catch(err) {
     console.error(err); setVoiceState('idle');
-    addChatBubble('Désolé, une erreur est survenue. Réessayez.','ai');
-    showToast('Erreur : '+err.message,'err');
+    const voiceErrMsg = isQuotaError(err) ? 'Quota API épuisé pour le moment. Réessayez plus tard !' : 'Désolé, une erreur est survenue. Réessayez.';
+    addChatBubble(voiceErrMsg, 'ai');
+    showToast(isQuotaError(err) ? 'Quota épuisé' : 'Erreur', 'err');
   }
 }
 
@@ -1807,12 +2188,13 @@ function addChatBubble(text,role) {
    MISC
 ═══════════════════════════════════════════════════════ */
 function clearAll() {
-  ings=[];uploads=[];diets=[];recipe=null;
+  ings=[];uploads=[];diets=[];recipe=null;chatCtx=[];
   renderTags(); renderImgPreviews();
   document.querySelectorAll('.dchip').forEach(c=>c.classList.remove('on'));
   document.getElementById('recipe-section').style.display='none';
   document.getElementById('scrollRecipeBtn').style.display='none';
-  hideError(); updateGenStatus(); stopSpeaking();
+  document.getElementById('postRecipeQuizBtn').style.display='none';
+  hideError(); updateGenStatus(); stopSpeaking(); stopConfetti();
   showToast('Tout effacé');
 }
 
@@ -1835,7 +2217,20 @@ function showSpinner(title,sub) {
 function setSpinnerSub(sub){document.getElementById('spinnerSub').textContent=sub}
 function hideSpinner(){document.getElementById('spinnerWrap').classList.remove('show')}
 
-function showError(msg){const el=document.getElementById('errorNotice');el.textContent=msg;el.classList.add('show')}
+function isQuotaError(err) {
+  const m = err?.message || '';
+  try { const j = JSON.parse(m); if (j.type === 'exceeded_limit' || j.windows) return true; } catch(_) {}
+  return /429|rate|exceeded_limit|quota/i.test(m);
+}
+
+function showError(msg, detail='', showDemo=false) {
+  const el = document.getElementById('errorNotice');
+  el.innerHTML =
+    '<div style="font-weight:600;font-size:.95rem;margin-bottom:.4rem">' + msg + '</div>' +
+    (detail ? '<div style="font-size:.82rem;opacity:.85;line-height:1.6">' + detail + '</div>' : '') +
+    (showDemo ? '<button onclick="loadDemoRecipe()" style="margin-top:1rem;background:var(--amber);color:#000;border:none;border-radius:8px;padding:8px 18px;font-size:.84rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">🍝 Voir une recette démo</button>' : '');
+  el.classList.add('show');
+}
 function hideError(){document.getElementById('errorNotice').classList.remove('show')}
 
 let toastTimer;
@@ -1854,6 +2249,18 @@ function safe(str){
 /* ═══════════════════════════════════════════════════════
    QUIZ — guided ingredient discovery
 ═══════════════════════════════════════════════════════ */
+// Normalize string for comparison: lowercase, strip accents, punctuation
+function normalizeStr(s) {
+  return String(s)
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // remove diacritics
+    .replace(/[''`]/g, '')             // remove apostrophes
+    .replace(/[^a-z0-9 ]/g, ' ')       // other chars → space
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 const QUIZ_ITEMS = [
   {emoji:"🍅", name:"Tomates",         q:"Avez-vous des tomates ?"},
   {emoji:"🧅", name:"Oignons",          q:"Des oignons à la maison ?"},
@@ -1939,10 +2346,25 @@ function showQuizResult() {
 }
 
 function closeQuiz() {
-  // Add found ingredients to list
+  // Add found ingredients
   quizFound.forEach(name => addIng(name));
+
+  // Remove items the user answered NO to (items not in quizFound but were asked)
+  // quizItems = all items shown, quizFound = only items user said YES
+  const askedNames = quizItems.map(i => i.name.toLowerCase());
+  const confirmedNames = quizFound.map(n => n.toLowerCase());
+  const deniedNames = askedNames.filter(n => !confirmedNames.includes(n));
+  if (deniedNames.length > 0) {
+    const before = ings.length;
+    ings = ings.filter(i => !deniedNames.includes(normalizeStr(i.name)));
+    const removed = before - ings.length;
+    if (removed > 0) renderTags();
+  }
+
   document.getElementById('quizBackdrop').classList.remove('show');
-  if (quizFound.length) showToast(`${quizFound.length} ingrédient(s) ajouté(s) ✓`, 'ok');
+  const parts = [];
+  if (quizFound.length) parts.push(quizFound.length + ' ajouté(s)');
+  if (parts.length) showToast('✓ ' + parts.join(', '), 'ok');
 }
 
 function resetQuiz() {
@@ -2005,6 +2427,625 @@ async function generateRecipeImage(recipe) {
   imgEl.src = url;
 }
 
+/* ═══════════════════════════════════════════════════════
+   DEMO RECIPE — works without API
+═══════════════════════════════════════════════════════ */
+function loadDemoRecipe() {
+  hideError();
+  const demo = {
+    title: "Spaghetti Carbonara",
+    description: "Un grand classique italien crémeux et savoureux, prêt en 20 minutes.",
+    mealType: "plat principal",
+    time: "20 minutes",
+    servings: "2 personnes",
+    calories: "650 kcal par personne",
+    difficulty: "Facile",
+    ingredients: [
+      {name:"Spaghetti",      quantity:"200 g",  available:true},
+      {name:"Lardons fumés",  quantity:"100 g",  available:true},
+      {name:"Œufs",           quantity:"3",       available:true},
+      {name:"Parmesan râpé",  quantity:"60 g",   available:true},
+      {name:"Ail",            quantity:"1 gousse",available:true},
+      {name:"Huile olive",    quantity:"1 c.s.", available:true},
+      {name:"Poivre noir",    quantity:"q.s.",   available:true},
+      {name:"Sel",            quantity:"q.s.",   available:true},
+    ],
+    steps: [
+      {title:"Cuire les pâtes", description:"Porter une grande casserole d'eau salée à ébullition. Cuire les spaghetti al dente selon les instructions du paquet (environ 8-10 min). Réserver 1 verre d'eau de cuisson avant d'égoutter."},
+      {title:"Préparer la sauce", description:"Battre les 3 œufs dans un bol avec le parmesan râpé, du poivre noir généreux. Mélanger jusqu'à obtenir une crème lisse. Ne pas saler — les lardons et le parmesan apportent déjà du sel."},
+      {title:"Faire revenir les lardons", description:"Dans une grande poêle, faire chauffer l'huile d'olive à feu moyen. Ajouter l'ail émincé et les lardons. Cuire 4-5 minutes jusqu'à ce que les lardons soient dorés et croustillants."},
+      {title:"Assembler hors du feu", description:"Retirer la poêle du feu. Ajouter les spaghetti égouttés directement dans la poêle. Verser la crème œuf-parmesan par-dessus. Mélanger rapidement en ajoutant une louche d'eau de cuisson pour créer une sauce crémeuse sans cuire les œufs."},
+      {title:"Ajuster et servir", description:"Si la sauce est trop épaisse, ajouter un peu plus d'eau de cuisson. Goûter et ajuster le poivre. Servir immédiatement dans des assiettes chaudes, avec un peu de parmesan râpé et de poivre noir concassé sur le dessus."},
+    ],
+    variants: [
+      {emoji:"🥓", title:"Version fumée intense", description:"Remplacer les lardons par du guanciale (joue de porc) pour l'authentique goût romain."},
+      {emoji:"🌿", title:"Version végétarienne",  description:"Remplacer les lardons par des champignons poêlés et des courgettes grillées."},
+      {emoji:"⚡", title:"Version ultra-rapide",  description:"Utiliser des pâtes fraîches (3 min de cuisson) pour un plat prêt en 10 minutes."},
+      {emoji:"💪", title:"Version protéinée",     description:"Ajouter du blanc de poulet grillé coupé en lanières par-dessus."},
+    ],
+    shopping: []
+  };
+  recipe = demo;
+  chatCtx = [
+    {role:"user",    content:"Recette : Spaghetti Carbonara."},
+    {role:"assistant",content:"Je connais parfaitement la recette Spaghetti Carbonara ! Posez-moi vos questions."}
+  ];
+  document.getElementById('recipe-section').style.display = 'block';
+  document.getElementById('scrollRecipeBtn').style.display = '';
+  renderRecipe(demo);
+  showToast('Recette démo chargée ✓', 'ok');
+  setTimeout(()=>document.getElementById('recipe-section').scrollIntoView({behavior:'smooth',block:'start'}), 80);
+}
+
+/* ═══════════════════════════════════════════════════════
+   WISH BOX — "Ce que je veux faire"
+═══════════════════════════════════════════════════════ */
+function setWish(text) {
+  document.getElementById('wishInput').value = text;
+  document.getElementById('wishInput').focus();
+}
+
+async function submitWish() {
+  const wish = document.getElementById('wishInput').value.trim();
+  if (!wish) { showToast('Décrivez ce que vous voulez cuisiner !', 'err'); return; }
+
+  const btn = document.getElementById('wishBtn');
+  btn.disabled = true;
+  const thinking = document.getElementById('wishThinking');
+  const thinkingText = document.getElementById('wishThinkingText');
+  thinking.classList.add('show');
+  thinkingText.textContent = "L'IA analyse votre envie et prépare les questions…";
+
+  const wishPrompt = `Envie : ${wish}
+
+Liste les 8 a 12 ingrédients essentiels pour cette recette.
+Réponds UNIQUEMENT en JSON valide :
+{"dish":"Nom du plat","ingredients":[{"name":"Nom","emoji":"emoji","hint":"raison courte","default_qty":"200","default_unit":"g"}]}`;
+
+  try {
+    const raw = await callClaude(
+      [{ role: "user", content: wishPrompt }],
+      "Tu es un chef cuisinier. Réponds UNIQUEMENT en JSON brut valide, sans texte avant ou après.",
+      1000
+    );
+    let parsed;
+    try {
+      let clean = raw.trim().replace(/^```json\s*/i,'').replace(/```\s*$/i,'').trim();
+      const s = clean.indexOf('{'), e = clean.lastIndexOf('}');
+      parsed = JSON.parse(clean.slice(s, e+1));
+    } catch(_) {
+      parsed = null;
+    }
+    thinking.classList.remove('show');
+    btn.disabled = false;
+    if (parsed && parsed.ingredients && parsed.ingredients.length) {
+      openMandatoryQuiz(parsed.dish || wish, parsed.ingredients);
+    } else {
+      openMandatoryQuiz(wish, buildFallbackIngredients(wish));
+    }
+  } catch(err) {
+    thinking.classList.remove('show');
+    btn.disabled = false;
+    // Always open quiz even if API failed — use smart local fallback
+    const fallback = buildFallbackIngredients(wish);
+    openMandatoryQuiz(wish, fallback);
+    if (!isQuotaError(err)) showToast('Questionnaire standard lancé', 'err');
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   MANDATORY QUIZ — Q2
+   Shows ALL needed ingredients one by one, user must answer
+═══════════════════════════════════════════════════════ */
+let mq = {
+  items: [],         // {name, emoji, hint, default_qty, default_unit}[]
+  idx: 0,
+  have: [],          // {name, qty, unit}[] — confirmed "yes"
+  missing: [],       // string[] — "no"
+  dish: '',
+  waitingQty: false
+};
+
+function openMandatoryQuiz(dish, items) {
+  mq.items = items;
+  mq.idx = 0;
+  mq.have = [];
+  mq.missing = [];
+  mq.dish = dish;
+  mq.waitingQty = false;
+
+  document.getElementById('mquizTitle').textContent = "Ingrédients pour : " + dish;
+  document.getElementById('mquizSub').textContent = "Répondez pour chaque ingrédient — l'IA s'adaptera selon vos disponibilités.";
+  document.getElementById('mquizResult').style.display = 'none';
+  document.getElementById('mquizBody').style.display = '';
+  document.getElementById('mquizAnswers').style.display = '';
+  document.getElementById('mquizQtyRow').style.display = 'none';
+  document.getElementById('mquizBackdrop').classList.add('show');
+  renderMquizQuestion();
+}
+
+function renderMquizQuestion() {
+  const total = mq.items.length;
+  const item = mq.items[mq.idx];
+  if (!item) { showMquizResult(); return; }
+
+  document.getElementById('mquizProgFill').style.width = (mq.idx / total * 100) + '%';
+  document.getElementById('mquizQNum').textContent = 'Ingrédient ' + (mq.idx+1) + ' / ' + total;
+  document.getElementById('mquizEmoji').textContent = item.emoji || '🥘';
+  document.getElementById('mquizQText').textContent = 'Avez-vous : ' + item.name + ' ?';
+  document.getElementById('mquizHint').textContent = item.hint || '';
+
+  // Reset qty row
+  mq.waitingQty = false;
+  document.getElementById('mquizQtyRow').style.display = 'none';
+  document.getElementById('mquizAnswers').style.display = '';
+  document.getElementById('mquizQtyInput').value = item.default_qty || '';
+  const unitSel = document.getElementById('mquizUnitSelect');
+  const unit = item.default_unit || 'g';
+  for (let o of unitSel.options) o.selected = (o.value === unit);
+
+  // Animate in
+  const body = document.getElementById('mquizBody');
+  body.style.opacity = '0'; body.style.transform = 'translateY(12px)';
+  requestAnimationFrame(() => {
+    body.style.transition = 'opacity .2s ease, transform .2s ease';
+    body.style.opacity = '1'; body.style.transform = 'none';
+  });
+}
+
+function mquizAnswerYes() {
+  // Show qty confirmation row
+  mq.waitingQty = true;
+  document.getElementById('mquizAnswers').style.display = 'none';
+  document.getElementById('mquizQtyRow').style.display = 'flex';
+  document.getElementById('mquizQtyInput').focus();
+}
+
+function mquizConfirmYes() {
+  const item = mq.items[mq.idx];
+  const qty = document.getElementById('mquizQtyInput').value || '';
+  const unit = document.getElementById('mquizUnitSelect').value;
+  mq.have.push({ name: item.name, qty, unit });
+  mq.idx++;
+  if (mq.idx >= mq.items.length) {
+    showMquizResult();
+  } else {
+    renderMquizQuestion();
+  }
+}
+
+function mquizAnswerNo() {
+  const item = mq.items[mq.idx];
+  mq.missing.push(item.name);
+  mq.idx++;
+  if (mq.idx >= mq.items.length) {
+    showMquizResult();
+  } else {
+    renderMquizQuestion();
+  }
+}
+
+function showMquizResult() {
+  document.getElementById('mquizProgFill').style.width = '100%';
+  document.getElementById('mquizBody').style.display = 'none';
+  document.getElementById('mquizAnswers').style.display = 'none';
+  document.getElementById('mquizQtyRow').style.display = 'none';
+  document.getElementById('mquizResult').style.display = 'block';
+
+  const haveCount = mq.have.length;
+  const missCount = mq.missing.length;
+  let txt = '';
+
+  if (haveCount > 0) {
+    const haveList = mq.have.map(i => i.qty ? `${i.name} (${i.qty} ${i.unit})` : i.name).join(', ');
+    txt += `<strong style="color:var(--amber2)">${haveCount} ingrédient(s) disponible(s)</strong> : ${haveList}`;
+  }
+  if (missCount > 0) {
+    const sep = haveCount > 0 ? '<br>' : '';
+    txt += `${sep}<span style="color:var(--rose)">Manquants (${missCount})</span> : ${mq.missing.join(', ')}<br><small style="color:var(--txt-3)">L'IA va s'adapter et proposer des substituts.</small>`;
+  }
+  if (haveCount === 0) {
+    document.getElementById('mquizResultTitle').textContent = 'On va s’adapter !';
+    txt = `<span style="color:var(--txt-3)">Pas d'ingrédient confirmé — l'IA proposera une recette simplifiée avec substituts.</span>`;
+  } else {
+    document.getElementById('mquizResultTitle').textContent = 'Parfait, on y va !';
+  }
+  document.getElementById('mquizResultText').innerHTML = txt;
+}
+
+function mquizFinish() {
+  // ── Step 1: remove from ings[] everything the user said "NO" to ──
+  // (items in mq.missing — user explicitly confirmed they don't have them)
+  if (mq.missing.length > 0) {
+    const missingNorm = mq.missing.map(m => normalizeStr(m));
+    const before = ings.length;
+    ings = ings.filter(i => !missingNorm.includes(normalizeStr(i.name)));
+    const removed = before - ings.length;
+    if (removed > 0) console.log('Removed', removed, 'ingredients that user denied');
+  }
+
+  // ── Step 2: add everything the user said "YES" to (if not already there) ──
+  let added = 0;
+  mq.have.forEach(i => {
+    if (!ings.find(x => normalizeStr(x.name) === normalizeStr(i.name))) {
+      ings.push({ name: i.name, qty: i.qty, unit: i.unit });
+      added++;
+    } else {
+      // Update qty/unit if already present
+      const existing = ings.find(x => x.name.toLowerCase() === i.name.toLowerCase());
+      if (i.qty) { existing.qty = i.qty; existing.unit = i.unit; }
+    }
+  });
+
+  renderTags();
+  updateGenStatus();
+  document.getElementById('mquizBackdrop').classList.remove('show');
+
+  // Toast summary
+  const parts = [];
+  if (added > 0)            parts.push(added + ' ajouté(s)');
+  if (mq.missing.length > 0) parts.push(mq.missing.length + ' retiré(s)');
+  if (parts.length) showToast('✓ ' + parts.join(', '), 'ok');
+
+  // Build generation hint
+  const wishText = document.getElementById('wishInput').value.trim();
+  const missingNote = mq.missing.length
+    ? ' Ingredients manquants : ' + mq.missing.join(', ') + '. Adapte la recette avec substituts si besoin.'
+    : '';
+  const hint = (wishText || 'recette avec mes ingredients') + missingNote;
+
+  setTimeout(() => generateRecipe(hint), 350);
+}
+
+// Close mandatory quiz on backdrop — NOT closeable (mandatory)
+document.getElementById('mquizBackdrop').addEventListener('click', e => {
+  // intentionally blocking backdrop close — quiz is mandatory
+  e.stopPropagation();
+});
+
+// Allow ESC only to cancel (not validate)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && mq.waitingQty &&
+      document.getElementById('mquizBackdrop').classList.contains('show')) {
+    mquizConfirmYes();
+    e.preventDefault();
+  }
+});
+
+/* ═══════════════════════════════════════════════════════
+   FALLBACK INGREDIENT BUILDER (no API needed)
+═══════════════════════════════════════════════════════ */
+function buildFallbackIngredients(wish) {
+  const w = wish.toLowerCase();
+  // Category detection
+  const isVeg   = /végétar|vegan|légume|salade|tomate|courgette/i.test(w);
+  const isPasta  = /pâtes|pasta|spaghetti|tagliatelle|macaroni|linguine/i.test(w);
+  const isChicken= /poulet|chicken|volaille/i.test(w);
+  const isFish   = /poisson|saumon|cabillaud|thon|crevette/i.test(w);
+  const isDessert= /dessert|gâteau|tarte|mousse|crème|chocolat|sucré/i.test(w);
+  const isSoup   = /soupe|potage|velouté/i.test(w);
+  const isRice   = /riz|risotto|paella/i.test(w);
+  const isEggs   = /oeuf|oeufs|omelette|quiche/i.test(w);
+
+  if (isDessert) return [
+    {emoji:"🥚",  name:"Oeufs",           hint:"Base des desserts",       default_qty:"3",   default_unit:"pce"},
+    {emoji:"🧈",  name:"Beurre",           hint:"Pour la texture",         default_qty:"100", default_unit:"g"},
+    {emoji:"🍚",  name:"Farine",           hint:"Structure du gâteau",     default_qty:"200", default_unit:"g"},
+    {emoji:"🍬",  name:"Sucre",            hint:"Douceur",                 default_qty:"150", default_unit:"g"},
+    {emoji:"🍫",  name:"Chocolat noir",    hint:"Pour un dessert intense", default_qty:"100", default_unit:"g"},
+    {emoji:"🥛",  name:"Lait",             hint:"Texture moelleuse",       default_qty:"200", default_unit:"ml"},
+    {emoji:"🫙",  name:"Levure chimique",  hint:"Pour la levée",           default_qty:"1",   default_unit:"tsp"},
+    {emoji:"🍋",  name:"Citron",           hint:"Pour relever",            default_qty:"1",   default_unit:"pce"},
+  ];
+  if (isSoup) return [
+    {emoji:"🧅",  name:"Oignons",          hint:"Base aromatique",         default_qty:"2",   default_unit:"pce"},
+    {emoji:"🧄",  name:"Ail",              hint:"Saveur",                  default_qty:"2",   default_unit:"gousse"},
+    {emoji:"🥕",  name:"Carottes",         hint:"Douceur et couleur",      default_qty:"3",   default_unit:"pce"},
+    {emoji:"🥔",  name:"Pommes de terre",  hint:"Corps de la soupe",       default_qty:"300", default_unit:"g"},
+    {emoji:"🫙",  name:"Bouillon de légumes", hint:"Base liquide",         default_qty:"1",   default_unit:"L"},
+    {emoji:"🧈",  name:"Beurre",           hint:"Pour faire revenir",      default_qty:"20",  default_unit:"g"},
+    {emoji:"🌿",  name:"Herbes fraiches",  hint:"Parfum final",            default_qty:"1",   default_unit:"brin"},
+  ];
+  if (isPasta) return [
+    {emoji:"🍝",  name:"Pates",            hint:"Ingrédient principal",    default_qty:"200", default_unit:"g"},
+    {emoji:"🧅",  name:"Oignons",          hint:"Base de sauce",           default_qty:"1",   default_unit:"pce"},
+    {emoji:"🧄",  name:"Ail",              hint:"Arôme essentiel",         default_qty:"2",   default_unit:"gousse"},
+    {emoji:"🍅",  name:"Tomates",          hint:"Pour la sauce",           default_qty:"400", default_unit:"g"},
+    {emoji:"🧀",  name:"Parmesan",         hint:"Pour finir",              default_qty:"50",  default_unit:"g"},
+    {emoji:"🫒",  name:"Huile olive",      hint:"Cuisson et saveur",       default_qty:"2",   default_unit:"tbsp"},
+    {emoji:"🌿",  name:"Basilic",          hint:"Frais pour servir",       default_qty:"1",   default_unit:"brin"},
+    {emoji:"🥓",  name:"Lardons",          hint:"Optionnel - saveur",      default_qty:"100", default_unit:"g"},
+  ];
+  if (isChicken) return [
+    {emoji:"🍗",  name:"Poulet",           hint:"Protéine principale",     default_qty:"400", default_unit:"g"},
+    {emoji:"🧅",  name:"Oignons",          hint:"Base aromatique",         default_qty:"2",   default_unit:"pce"},
+    {emoji:"🧄",  name:"Ail",              hint:"Arôme",                   default_qty:"3",   default_unit:"gousse"},
+    {emoji:"🍋",  name:"Citron",           hint:"Acidité et fraîcheur",    default_qty:"1",   default_unit:"pce"},
+    {emoji:"🫒",  name:"Huile olive",      hint:"Pour faire revenir",      default_qty:"2",   default_unit:"tbsp"},
+    {emoji:"🌿",  name:"Herbes fraiches",  hint:"Thym, romarin",           default_qty:"2",   default_unit:"brin"},
+    {emoji:"🌶️", name:"Paprika",          hint:"Couleur et goût",         default_qty:"1",   default_unit:"tsp"},
+    {emoji:"🫙",  name:"Bouillon",         hint:"Pour la sauce",           default_qty:"200", default_unit:"ml"},
+  ];
+  if (isFish) return [
+    {emoji:"🐟",  name:"Filet de poisson", hint:"Protéine principale",     default_qty:"300", default_unit:"g"},
+    {emoji:"🍋",  name:"Citron",           hint:"Indispensable avec le poisson", default_qty:"1", default_unit:"pce"},
+    {emoji:"🧄",  name:"Ail",              hint:"Arôme",                   default_qty:"2",   default_unit:"gousse"},
+    {emoji:"🧈",  name:"Beurre",           hint:"Pour la cuisson",         default_qty:"30",  default_unit:"g"},
+    {emoji:"🌿",  name:"Persil frais",     hint:"Pour finir le plat",      default_qty:"1",   default_unit:"brin"},
+    {emoji:"🫒",  name:"Huile olive",      hint:"Cuisson",                 default_qty:"1",   default_unit:"tbsp"},
+  ];
+  if (isEggs) return [
+    {emoji:"🥚",  name:"Oeufs",            hint:"Ingrédient principal",    default_qty:"4",   default_unit:"pce"},
+    {emoji:"🧅",  name:"Oignons",          hint:"Pour la garniture",       default_qty:"1",   default_unit:"pce"},
+    {emoji:"🧀",  name:"Fromage rapé",     hint:"Gratiné ou fondu",        default_qty:"80",  default_unit:"g"},
+    {emoji:"🥛",  name:"Crème fraîche",    hint:"Texture crémeuse",        default_qty:"100", default_unit:"ml"},
+    {emoji:"🧈",  name:"Beurre",           hint:"Pour la poêle",           default_qty:"15",  default_unit:"g"},
+    {emoji:"🌿",  name:"Ciboulette",       hint:"Pour la fraîcheur",       default_qty:"1",   default_unit:"brin"},
+  ];
+  // Default: generic base
+  return [
+    {emoji:"🧅",  name:"Oignons",          hint:"Base aromatique",         default_qty:"2",   default_unit:"pce"},
+    {emoji:"🧄",  name:"Ail",              hint:"Saveur essentielle",      default_qty:"2",   default_unit:"gousse"},
+    {emoji:"🍅",  name:"Tomates",          hint:"Sauce ou accompagnement", default_qty:"300", default_unit:"g"},
+    {emoji:"🫒",  name:"Huile olive",      hint:"Pour cuisiner",           default_qty:"2",   default_unit:"tbsp"},
+    {emoji:"🥕",  name:"Carottes",         hint:"Légume polyvalent",       default_qty:"2",   default_unit:"pce"},
+    {emoji:"🧈",  name:"Beurre",           hint:"Pour la texture",         default_qty:"30",  default_unit:"g"},
+    {emoji:"🌿",  name:"Herbes fraiches",  hint:"Persil, thym, basilic",   default_qty:"2",   default_unit:"brin"},
+    {emoji:"🫙",  name:"Bouillon",         hint:"Base liquide",            default_qty:"300", default_unit:"ml"},
+    {emoji:"🌶️", name:"Paprika",          hint:"Couleur et saveur",       default_qty:"1",   default_unit:"tsp"},
+    {emoji:"🍋",  name:"Citron",           hint:"Acidité équilibrante",    default_qty:"1",   default_unit:"pce"},
+  ];
+}
+
+/* ═══════════════════════════════════════════════════════
+   POST-RECIPE QUIZ — add missing recipe ingredients
+═══════════════════════════════════════════════════════ */
+function openPostRecipeQuiz() {
+  if (!recipe || !recipe.ingredients) {
+    showToast("Générez d'abord une recette", 'err'); return;
+  }
+  // Build quiz from the recipe's ingredients not yet in our list
+  const alreadyHave = ings.map(i => i.name.toLowerCase());
+  const missing = recipe.ingredients
+    .filter(i => !alreadyHave.includes(i.name.toLowerCase()))
+    .map(i => ({
+      name: i.name,
+      emoji: "🥘",
+      hint: i.quantity ? `Quantité suggérée : ${i.quantity}` : "Ingrédient de la recette",
+      default_qty: i.quantity ? i.quantity.replace(/[^0-9.]/g,'') : "",
+      default_unit: i.quantity ? guessUnit(i.quantity) : "g"
+    }));
+
+  if (missing.length === 0) {
+    showToast('Vous avez déjà tous les ingrédients !', 'ok'); return;
+  }
+  openMandatoryQuiz(recipe.title + " — ingrédients manquants", missing);
+}
+
+function guessUnit(qty) {
+  const q = qty.toLowerCase();
+  if (/kg/.test(q)) return 'kg';
+  if (/ml/.test(q)) return 'ml';
+  if (/cl/.test(q)) return 'cl';
+  if (/litre|litr|^l/.test(q)) return 'L';
+  if (/tsp|c\.à\.c|c\.a\.c/.test(q)) return 'tsp';
+  if (/tbsp|c\.à\.s|c\.a\.s/.test(q)) return 'tbsp';
+  if (/gousse/.test(q)) return 'gousse';
+  if (/tranche/.test(q)) return 'tranche';
+  if (/brin/.test(q)) return 'brin';
+  if (/pince|pincée/.test(q)) return 'pincée';
+  if (/pce|pièce|unité/.test(q)) return 'pce';
+  return 'g';
+}
+
+/* ═══════════════════════════════════════════════════════
+   RANK / SCORE SYSTEM
+═══════════════════════════════════════════════════════ */
+const RANKS = [
+  { pts:0,    icon:"🥄", title:"Débutant en cuisine",      desc:"Bienvenue dans le monde de la cuisine !",         nextPts:100  },
+  { pts:100,  icon:"🍳", title:"Amateur en cuisine",       desc:"Vous maîtrisez les bases. Continuez !",           nextPts:250  },
+  { pts:250,  icon:"👨‍🍳",title:"Cuisinier du dimanche",    desc:"La cuisine devient une vraie passion.",           nextPts:500  },
+  { pts:500,  icon:"🔪", title:"Cordon Bleu",              desc:"Les techniques s'affinent, les saveurs aussi.",   nextPts:900  },
+  { pts:900,  icon:"🌟", title:"Sous-chef talentueux",     desc:"Vous impressionnez vos convives.",                nextPts:1500 },
+  { pts:1500, icon:"🏆", title:"Chef confirmé",            desc:"Votre cuisine est digne des meilleures tables.",  nextPts:2500 },
+  { pts:2500, icon:"👑", title:"Grand Chef Étoilé",        desc:"Michelin vous attend. Un vrai talent !",          nextPts:Infinity },
+];
+
+const DIFFICULTY_PTS = { facile:15, intermédiaire:35, difficile:70 };
+
+let playerScore = parseInt(localStorage.getItem('chefai_score') || '0');
+let playerRecipes = parseInt(localStorage.getItem('chefai_recipes') || '0');
+
+function saveScore() {
+  localStorage.setItem('chefai_score', playerScore);
+  localStorage.setItem('chefai_recipes', playerRecipes);
+}
+
+function getCurrentRank(pts) {
+  let rank = RANKS[0];
+  for (const r of RANKS) {
+    if (pts >= r.pts) rank = r;
+    else break;
+  }
+  return rank;
+}
+
+function updateScorePill() {
+  const rank = getCurrentRank(playerScore);
+  document.getElementById('scoreIcon').textContent = rank.icon;
+  document.getElementById('scorePtsDisplay').textContent = playerScore + ' pts';
+  document.getElementById('scoreRankDisplay').textContent = rank.title;
+}
+
+function showScoreDetails() {
+  const rank = getCurrentRank(playerScore);
+  const nextRank = RANKS.find(r => r.pts > playerScore);
+  const ptsInLevel = playerScore - rank.pts;
+  const ptsNeeded  = nextRank ? nextRank.pts - rank.pts : 1;
+  const pct = nextRank ? Math.min(100, Math.round(ptsInLevel / ptsNeeded * 100)) : 100;
+  showToast(
+    `${rank.icon} ${rank.title} · ${playerScore} pts · ${playerRecipes} recette(s)`,
+    'ok'
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   RECIPE FINISHED — trigger celebration
+═══════════════════════════════════════════════════════ */
+function recipeFinished() {
+  if (!recipe) return;
+
+  const diffKey = (recipe.difficulty || 'facile').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const pts = DIFFICULTY_PTS[diffKey] || DIFFICULTY_PTS.facile;
+
+  const oldRank = getCurrentRank(playerScore);
+  playerScore  += pts;
+  playerRecipes += 1;
+  saveScore();
+  const newRank = getCurrentRank(playerScore);
+  const leveledUp = newRank.pts > oldRank.pts;
+
+  // Update header pill
+  updateScorePill();
+
+  // Fill celebration modal
+  const emojis = { 15:'🍽️', 35:'👨‍🍳', 70:'🏆' };
+  document.getElementById('celebEmoji').textContent = emojis[pts] || '🍽️';
+  document.getElementById('celebPts').textContent   = '⭐ +' + pts + ' points';
+  document.getElementById('celebSubtitle').textContent =
+    recipe.title ? `"${recipe.title}" — régalez-vous bien !` : 'Régalez-vous bien 🍽️';
+
+  // Level-up banner
+  const luEl = document.getElementById('celebLevelUp');
+  if (leveledUp) {
+    luEl.style.display = 'block';
+    document.getElementById('celebNewRank').textContent    = newRank.icon + '  ' + newRank.title;
+    document.getElementById('celebNewRankDesc').textContent = newRank.desc;
+  } else {
+    luEl.style.display = 'none';
+  }
+
+  // Progress bar
+  const nextRankData = RANKS.find(r => r.pts > playerScore);
+  const rankStart    = newRank.pts;
+  const rankEnd      = nextRankData ? nextRankData.pts : playerScore + 1;
+  const ptsIn        = playerScore - rankStart;
+  const ptsRange     = rankEnd - rankStart;
+  const pct          = nextRankData ? Math.min(100, Math.round(ptsIn / ptsRange * 100)) : 100;
+
+  document.getElementById('celebRankName').textContent  = newRank.icon + ' ' + newRank.title;
+  document.getElementById('celebProgText').textContent  =
+    nextRankData ? (playerScore - rankStart) + ' / ' + ptsRange + ' pts' : 'Rang max !';
+
+  // Animate progress fill after modal appears
+  setTimeout(() => {
+    document.getElementById('celebProgFill').style.width = pct + '%';
+  }, 50);
+
+  // Show modal
+  document.getElementById('celebBackdrop').classList.add('show');
+
+  // Fire confetti
+  launchConfetti(leveledUp ? 200 : 100);
+}
+
+function closeCelebration() {
+  document.getElementById('celebBackdrop').classList.remove('show');
+  stopConfetti();
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONFETTI ENGINE (canvas-based, no library)
+═══════════════════════════════════════════════════════ */
+const CONFETTI_COLORS = [
+  '#f0a220','#fbbf5a','#e05c2a','#2ec27e',
+  '#60c8fa','#e8485a','#b97bfa','#fff'
+];
+
+let confettiParticles = [];
+let confettiRaf = null;
+let confettiCanvas, confettiCtx;
+
+function initConfettiCanvas() {
+  confettiCanvas = document.getElementById('confettiCanvas');
+  confettiCtx    = confettiCanvas.getContext('2d');
+}
+
+function launchConfetti(count) {
+  if (!confettiCanvas) initConfettiCanvas();
+  confettiCanvas.style.display = 'block';
+  confettiCanvas.width  = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+
+  confettiParticles = [];
+  for (let i = 0; i < count; i++) {
+    confettiParticles.push({
+      x:     Math.random() * confettiCanvas.width,
+      y:     -Math.random() * confettiCanvas.height * 0.5,
+      w:     6 + Math.random() * 8,
+      h:     3 + Math.random() * 4,
+      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+      rot:   Math.random() * Math.PI * 2,
+      vx:    (Math.random() - 0.5) * 3,
+      vy:    2 + Math.random() * 4,
+      vrot:  (Math.random() - 0.5) * 0.15,
+      alpha: 1,
+      shape: Math.random() > 0.5 ? 'rect' : 'circle'
+    });
+  }
+
+  if (confettiRaf) cancelAnimationFrame(confettiRaf);
+  animateConfetti();
+}
+
+function animateConfetti() {
+  confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  let alive = false;
+
+  for (const p of confettiParticles) {
+    p.x   += p.vx;
+    p.y   += p.vy;
+    p.rot += p.vrot;
+    p.vy  += 0.05; // gravity
+    if (p.y > confettiCanvas.height + 20) { p.alpha = 0; }
+    else { p.alpha = Math.min(1, p.alpha); alive = true; }
+
+    if (p.alpha <= 0) continue;
+    confettiCtx.save();
+    confettiCtx.globalAlpha = p.alpha;
+    confettiCtx.translate(p.x, p.y);
+    confettiCtx.rotate(p.rot);
+    confettiCtx.fillStyle = p.color;
+    if (p.shape === 'circle') {
+      confettiCtx.beginPath();
+      confettiCtx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+      confettiCtx.fill();
+    } else {
+      confettiCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+    }
+    confettiCtx.restore();
+  }
+
+  if (alive) {
+    confettiRaf = requestAnimationFrame(animateConfetti);
+  } else {
+    stopConfetti();
+  }
+}
+
+function stopConfetti() {
+  if (confettiRaf) { cancelAnimationFrame(confettiRaf); confettiRaf = null; }
+  if (confettiCanvas) {
+    confettiCtx && confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    confettiCanvas.style.display = 'none';
+  }
+}
+
+// Init score on load
+updateScorePill();
+
 // Close panel on outside click
 document.addEventListener('click',e=>{
   const dock=document.getElementById('voiceDock');
@@ -2013,8 +3054,18 @@ document.addEventListener('click',e=>{
     if(panel.classList.contains('open')){panel.classList.remove('open');stopMic()}
   }
 });
+window.addEventListener('resize',()=>{
+  if(confettiCanvas && confettiCanvas.style.display!=='none'){
+    confettiCanvas.width=window.innerWidth;
+    confettiCanvas.height=window.innerHeight;
+  }
+});
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){document.getElementById('voicePanel').classList.remove('open');stopMic()}
+  if(e.key==='Escape'){
+    document.getElementById('voicePanel').classList.remove('open');
+    stopMic();
+    // mquizBackdrop is NOT closeable via ESC (mandatory)
+  }
 });
 </script>
 </body>
